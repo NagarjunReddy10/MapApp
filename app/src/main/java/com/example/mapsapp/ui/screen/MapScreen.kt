@@ -40,6 +40,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.mapsapp.ui.components.BottomSearchBar
+import com.example.mapsapp.ui.components.MyLocationButton
+import com.example.mapsapp.ui.components.TopLocationBar
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -121,75 +124,25 @@ fun MapScreen(navController: NavController) {
             tint = Color.Red,
             modifier = Modifier.align(Alignment.Center).size(40.dp)
             )
-        Box(
-            modifier = Modifier.align(Alignment.TopCenter)
-                .statusBarsPadding()
-                .padding(16.dp)
-                .shadow(8.dp, CircleShape)
-                .background(Color.White, CircleShape)
-                .padding(horizontal = 16.dp, vertical = 12.dp)
-                .fillMaxWidth()
-        ){
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Adjust, contentDescription = null,
-                    tint = Color(0xFF1A73E8),
-                    modifier = Modifier.size(20.dp)
-                )
-                Spacer(Modifier.width(12.dp))
 
-                Text(text = currentAddress, maxLines = 1, color = Color.Black)
-            }
-        }
-        Box(
-            modifier = Modifier.align(Alignment.BottomCenter)
-                .navigationBarsPadding()
-                .padding(16.dp)
-                .shadow(8.dp, RoundedCornerShape(28.dp))
-                .background(Color(0xFFF1F3F4), RoundedCornerShape(28.dp))
-                .padding(horizontal = 16.dp, vertical = 14.dp)
-                .fillMaxWidth()
-                .clickable{
-                    navController.navigate("drop")
-                }
-        ){
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = null,
-                    tint = Color.Gray,
-                    modifier = Modifier.size(20.dp)
-                )
-                Spacer(modifier = Modifier.width(12.dp))
+        TopLocationBar(
+            address = currentAddress
+        )
 
-                Text(
-                    text = "Search Destination",
-                    color = Color.Gray
-                )
-            }
+        BottomSearchBar {
+            navController.navigate("drop")
         }
+
         Box(
             modifier = Modifier.align(Alignment.BottomEnd)
                 .padding(end = 20.dp, bottom = 90.dp)
-                .size(48.dp)
-                .background(Color.White, CircleShape)
-                .clickable{
-                    animateToCurrentLocation(
-                        fusedLocationClient,
-                        cameraPositionState
-                    )
-                },
-            contentAlignment = Alignment.Center
         ){
-            Icon(
-                imageVector = Icons.Default.MyLocation, contentDescription = null,
-                tint = Color(0xFF1A73E8),
-                modifier = Modifier.size(22.dp)
-            )
+            MyLocationButton {
+                animateToCurrentLocation(
+                    fusedLocationClient,
+                    cameraPositionState
+                )
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.mapsapp.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,7 +23,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TopLocationBar(address: String){
+fun TopLocationBar(
+    address: String,
+    onClick: () -> Unit
+    ){
 
     Box(
         modifier = Modifier.fillMaxWidth()
@@ -30,6 +34,7 @@ fun TopLocationBar(address: String){
             .padding(16.dp)
             .shadow(8.dp, CircleShape)
             .background(Color.White, CircleShape)
+            .clickable{ onClick() }
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ){
         Row(

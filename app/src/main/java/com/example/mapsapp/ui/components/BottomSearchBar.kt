@@ -1,18 +1,15 @@
 package com.example.mapsapp.ui.components
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -27,16 +24,18 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BottomSearchBar(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ){
     Box(
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .navigationBarsPadding()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp, vertical = 12.dp)
             .shadow(8.dp, RoundedCornerShape(28.dp))
             .background(Color(0xFFF1F3F4), RoundedCornerShape(28.dp))
-            .padding(horizontal = 16.dp, vertical = 14.dp)
             .clickable{ onClick() }
+            .padding(horizontal = 16.dp, vertical = 14.dp)
     ){
         Row(
             verticalAlignment = Alignment.CenterVertically

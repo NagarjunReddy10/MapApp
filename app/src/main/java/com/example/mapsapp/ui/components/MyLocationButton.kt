@@ -9,18 +9,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MyLocation
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.LineHeightStyle.Alignment
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun MyLocationButton(
+    modifier: Modifier = Modifier,
     onClick:() -> Unit
 ){
     Box(
-        modifier = Modifier.size(48.dp)
+        modifier = modifier
+            .size(48.dp)
             .shadow(6.dp, CircleShape)
             .background(Color.White, CircleShape)
             .clickable{ onClick() },

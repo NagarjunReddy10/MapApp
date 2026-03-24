@@ -121,8 +121,9 @@ fun MapScreen(
         )
 
         TopLocationBar(
-            address = currentAddress, onClick = {
-                viewModel.setPickup(currentAddress)
+            address = currentAddress,
+            onClick = {
+                viewModel.setPickup(viewModel.realAddress.value)
                 viewModel.setEditingField(LocationField.PICKUP)
                 navController.navigate("drop")
             })

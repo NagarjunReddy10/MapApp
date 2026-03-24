@@ -24,8 +24,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.math.max
 
 @Composable
 fun LocationCard(
@@ -90,10 +92,11 @@ fun LocationCard(
                 } else {
 
                     Text(
-                        text = if (value.isEmpty())
-                            "Enter $title Location"
-                        else value,
-                        color = Color.Black
+                        text = value.ifEmpty { "Enter $title Location" },
+                        color = Color.Black,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        softWrap = false
                     )
                 }
             }
